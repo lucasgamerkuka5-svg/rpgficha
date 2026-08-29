@@ -1,30 +1,24 @@
 <!DOCTYPE html>
+
 <html lang="pt-BR">
 <head>
-
 <meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Hide and Kill — Ficha</title>
 
 <style>
-
 :root{
-    --bg:#070809;
-    --panel:#101216;
-    --panel2:#15181d;
-    --border:#292d34;
-    --text:#eeeeee;
-    --muted:#858b93;
-
-    --red:#c92b35;
-    --red-light:#ff4a55;
-
-    --green:#4caf72;
-    --blue:#527fd6;
-    --yellow:#d4aa43;
+    --bg:#090909;
+    --panel:#141414;
+    --panel2:#1d1d1d;
+    --border:#343434;
+    --text:#f2f2f2;
+    --muted:#999;
+    --red:#b80d0d;
+    --red-light:#ff3333;
+    --blue:#2980b9;
+    --purple:#8e44ad;
+    --yellow:#d4ac0d;
 }
 
 *{
@@ -33,3946 +27,1896 @@ content="width=device-width, initial-scale=1.0">
 
 body{
     margin:0;
-
-    background:
-        radial-gradient(
-            circle at 15% 0%,
-            #3a1117 0,
-            transparent 30%
-        ),
-        radial-gradient(
-            circle at 90% 15%,
-            #171b24 0,
-            transparent 30%
-        ),
-        var(--bg);
-
+    background:linear-gradient(135deg,#080808,#171010,#080808);
     color:var(--text);
-
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
+    font-family:Arial,Helvetica,sans-serif;
+    min-height:100vh;
 }
 
-button,
-input,
-textarea,
-select{
-    font-family:inherit;
-}
-
-button{
-    cursor:pointer;
-}
-
-
-/* =========================================================
-   TOPO
-========================================================= */
-
-.topbar{
-
-    height:72px;
-
-    position:sticky;
-
-    top:0;
-
-    z-index:100;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    padding:0 28px;
-
-    background:#090a0ddd;
-
-    backdrop-filter:blur(15px);
-
+header{
+    text-align:center;
+    padding:30px 20px;
     border-bottom:1px solid var(--border);
 }
 
-
-.logo{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:12px;
-
-    font-weight:900;
-
-    letter-spacing:3px;
-}
-
-
-.logo-icon{
-
-    width:40px;
-
-    height:40px;
-
-    display:grid;
-
-    place-items:center;
-
-    background:#210d11;
-
+header h1{
+    margin:0;
     color:var(--red-light);
-
-    border:1px solid #70252d;
-
-    clip-path:polygon(
-        50% 0,
-        100% 20%,
-        92% 100%,
-        8% 100%,
-        0 20%
-    );
+    letter-spacing:5px;
 }
 
-
-.logo span{
-    color:var(--red-light);
+header p{
+    color:var(--muted);
 }
 
+.container{
+    width:min(1400px,95%);
+    margin:auto;
+    padding:25px 0 50px;
+}
 
-.top-actions{
+/* ABAS */
 
+.tabs{
     display:flex;
-
+    flex-wrap:wrap;
     gap:8px;
+    margin-bottom:20px;
 }
 
-
-.btn{
-
+.tab-button{
     border:1px solid var(--border);
-
-    background:#13161b;
-
-    color:#ddd;
-
-    padding:9px 14px;
-
-    border-radius:6px;
-
+    background:var(--panel);
+    color:white;
+    padding:12px 18px;
+    border-radius:8px;
+    cursor:pointer;
     transition:.2s;
 }
 
-
-.btn:hover{
-
-    border-color:#666;
-
+.tab-button:hover{
+    border-color:var(--red-light);
 }
 
-
-.btn-danger{
-
-    background:#3c1015;
-
-    border-color:#72252d;
-
-    color:#ff9aa0;
-
+.tab-button.active{
+    background:var(--red);
 }
 
-
-/* =========================================================
-   LAYOUT
-========================================================= */
-
-.layout{
-
-    min-height:calc(100vh - 72px);
-
-    display:grid;
-
-    grid-template-columns:250px 1fr;
-
+.tab-content{
+    display:none;
 }
 
-
-/* =========================================================
-   SIDEBAR
-========================================================= */
-
-.sidebar{
-
-    background:#0b0c0f;
-
-    border-right:1px solid var(--border);
-
-    padding:20px 15px;
-
-}
-
-
-.profile{
-
-    padding:16px;
-
-    border:1px solid var(--border);
-
-    background:
-        linear-gradient(
-            145deg,
-            #17191e,
-            #0c0e11
-        );
-
-    margin-bottom:20px;
-
-}
-
-
-.avatar{
-
-    width:70px;
-
-    height:70px;
-
-    display:grid;
-
-    place-items:center;
-
-    font-size:30px;
-
-    color:var(--red-light);
-
-    background:#250d12;
-
-    border:1px solid #72262e;
-
-    margin-bottom:12px;
-
-}
-
-
-.profile h3{
-
-    margin:4px 0;
-
-}
-
-
-.small{
-
-    font-size:11px;
-
-    color:var(--muted);
-
-}
-
-
-.nav{
-
-    display:grid;
-
-    gap:6px;
-
-}
-
-
-.nav button{
-
-    width:100%;
-
-    text-align:left;
-
-    padding:11px;
-
-    background:none;
-
-    border:1px solid transparent;
-
-    color:#999;
-
-    border-radius:6px;
-
-}
-
-
-.nav button:hover{
-
-    background:#15181d;
-
-    border-color:var(--border);
-
-    color:#fff;
-
-}
-
-
-.nav button.active{
-
-    background:#17191e;
-
-    border-color:var(--border);
-
-    color:#fff;
-
-    box-shadow:
-        inset 3px 0 var(--red);
-
-}
-
-
-/* =========================================================
-   MAIN
-========================================================= */
-
-.main{
-
-    width:100%;
-
-    max-width:1450px;
-
-    padding:28px;
-
-    margin:auto;
-
-}
-
-
-.hero{
-
-    display:flex;
-
-    align-items:end;
-
-    justify-content:space-between;
-
-    gap:20px;
-
-    margin-bottom:22px;
-
-}
-
-
-.eyebrow{
-
-    color:var(--red-light);
-
-    font-size:11px;
-
-    letter-spacing:3px;
-
-    font-weight:bold;
-
-}
-
-
-.hero h1{
-
-    font-size:34px;
-
-    margin:5px 0;
-
-}
-
-
-.hero p{
-
-    margin:0;
-
-    color:var(--muted);
-
-}
-
-
-.level-box{
-
-    text-align:center;
-
-    padding:12px 20px;
-
-    background:#111419;
-
-    border:1px solid var(--border);
-
-}
-
-
-.level-box strong{
-
+.tab-content.active{
     display:block;
-
-    font-size:28px;
-
 }
 
+/* PAINÉIS */
 
-/* =========================================================
-   GRID
-========================================================= */
+.panel{
+    background:rgba(20,20,20,.98);
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:20px;
+    margin-bottom:20px;
+}
+
+.panel h2{
+    color:var(--red-light);
+    margin-top:0;
+    padding-bottom:10px;
+    border-bottom:1px solid var(--border);
+}
 
 .grid{
-
     display:grid;
-
-    gap:14px;
-
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:15px;
 }
 
-
-.stats{
-
-    grid-template-columns:
-        repeat(4,1fr);
-
+.grid2{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(350px,1fr));
+    gap:20px;
 }
 
+/* INPUTS */
 
-.resources{
-
-    grid-template-columns:
-        repeat(3,1fr);
-
-    margin-top:14px;
-
+.field{
+    margin-bottom:15px;
 }
 
-
-.two{
-
-    grid-template-columns:
-        1.2fr .8fr;
-
-    margin-top:14px;
-
-}
-
-
-.three{
-
-    grid-template-columns:
-        repeat(3,1fr);
-
-    margin-top:14px;
-
-}
-
-
-/* =========================================================
-   CARD
-========================================================= */
-
-.card{
-
-    background:
-        linear-gradient(
-            145deg,
-            #12151a,
-            #0d0f13
-        );
-
-    border:1px solid var(--border);
-
-    border-radius:8px;
-
-    padding:17px;
-
-    box-shadow:
-        0 10px 35px #0005;
-
-}
-
-
-.card h2{
-
-    margin:
-        0 0 14px;
-
+label{
+    display:block;
+    color:#bbb;
     font-size:13px;
-
-    letter-spacing:1px;
-
-    text-transform:uppercase;
-
+    margin-bottom:6px;
 }
 
-
-/* =========================================================
-   STATUS
-========================================================= */
-
-.stat-icon{
-
-    font-size:21px;
-
+input,
+textarea,
+select{
+    width:100%;
+    padding:11px;
+    background:#0c0c0c;
+    color:white;
+    border:1px solid var(--border);
+    border-radius:6px;
+    font-family:inherit;
 }
 
-
-.stat-label{
-
-    color:var(--muted);
-
-    font-size:11px;
-
-    margin-top:4px;
-
+input:focus,
+textarea:focus,
+select:focus{
+    outline:none;
+    border-color:var(--red-light);
 }
 
-
-.stat-value{
-
-    font-size:28px;
-
-    font-weight:900;
-
-    margin-top:3px;
-
+textarea{
+    min-height:100px;
+    resize:vertical;
 }
 
+/* STATUS */
+
+.status-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:15px;
+    margin-bottom:20px;
+}
+
+.status-card{
+    background:var(--panel);
+    border:1px solid var(--border);
+    padding:15px;
+    border-radius:10px;
+}
+
+.status-title{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:10px;
+}
 
 .bar{
-
     width:100%;
-
-    height:7px;
-
-    background:#25282e;
-
+    height:18px;
+    background:#050505;
     border-radius:20px;
-
     overflow:hidden;
-
-    margin-top:10px;
-
 }
 
-
-.bar-fill{
-
+.fill{
     height:100%;
-
-    width:100%;
-
-    background:var(--red);
-
-    transition:.3s;
-
+    transition:width .3s ease;
 }
 
+.hp-fill{background:#d62828;}
+.sanity-fill{background:var(--blue);}
+.fear-fill{background:var(--purple);}
+.pe-fill{background:var(--yellow);}
 
-.bar-blue{
-
-    background:var(--blue);
-
-}
-
-
-.bar-yellow{
-
-    background:var(--yellow);
-
-}
-
-
-.bar-green{
-
-    background:var(--green);
-
-}
-
-
-/* =========================================================
-   FORM
-========================================================= */
-
-.form-grid{
-
+.status-inputs{
     display:grid;
-
-    grid-template-columns:
-        repeat(2,1fr);
-
-    gap:10px;
-
-}
-
-
-.field label{
-
-    display:block;
-
-    color:var(--muted);
-
-    font-size:10px;
-
-    text-transform:uppercase;
-
-    letter-spacing:1px;
-
-    margin-bottom:5px;
-
-}
-
-
-.field input,
-.field textarea,
-.field select{
-
-    width:100%;
-
-    padding:10px;
-
-    color:white;
-
-    background:#0a0c0f;
-
-    border:1px solid #292d34;
-
-    border-radius:6px;
-
-    outline:none;
-
-}
-
-
-.field textarea{
-
-    min-height:90px;
-
-    resize:vertical;
-
-}
-
-
-.field input:focus,
-.field textarea:focus{
-
-    border-color:#8d3038;
-
-}
-
-
-.wide{
-
-    grid-column:1/-1;
-
-}
-
-
-/* =========================================================
-   ATRIBUTOS
-========================================================= */
-
-.attribute{
-
-    display:grid;
-
-    grid-template-columns:
-        1fr 65px;
-
+    grid-template-columns:1fr 1fr;
     gap:8px;
-
-    align-items:center;
-
-    margin:9px 0;
-
+    margin-top:10px;
 }
 
-
-.attribute input{
-
-    width:100%;
-
-    padding:8px;
-
+.status-inputs input{
     text-align:center;
+}
 
-    color:white;
+/* ATRIBUTOS */
 
-    background:#0a0c0f;
-
+.attribute-card{
+    background:#101010;
+    padding:15px;
     border:1px solid var(--border);
-
+    border-radius:8px;
 }
 
-
-/* =========================================================
-   TAGS
-========================================================= */
-
-.tag{
-
-    display:inline-flex;
-
-    padding:5px 9px;
-
-    margin:3px;
-
-    border-radius:20px;
-
-    background:#0c0e11;
-
-    border:1px solid #343941;
-
-    color:#bbb;
-
-    font-size:11px;
-
+.attribute-card input{
+    text-align:center;
+    font-size:20px;
+    font-weight:bold;
 }
 
+/* BOTÕES */
 
-/* =========================================================
-   ARMAS
-========================================================= */
-
-.weapon{
-
-    padding:12px;
-
-    background:#0b0d10;
-
-    border:1px solid var(--border);
-
-    border-radius:7px;
-
-    margin-bottom:9px;
-
+button{
+    font-family:inherit;
 }
 
-
-.weapon strong{
-
-    display:block;
-
-    margin-bottom:5px;
-
-}
-
-
-.weapon span{
-
-    color:#92979e;
-
-    font-size:11px;
-
-}
-
-
-/* =========================================================
-   INVESTIGAÇÃO
-========================================================= */
-
-.clue{
-
-    padding:12px;
-
-    margin-bottom:8px;
-
-    background:#0b0d10;
-
-    border-left:
-        3px solid var(--red);
-
-    border-top:
-        1px solid var(--border);
-
-    border-right:
-        1px solid var(--border);
-
-    border-bottom:
-        1px solid var(--border);
-
-}
-
-
-.clue input{
-
-    width:100%;
-
-    background:none;
-
-    border:none;
-
-    color:white;
-
-    outline:none;
-
-}
-
-
-/* =========================================================
-   RUÍDO
-========================================================= */
-
-.noise{
-
-    display:flex;
-
-    gap:5px;
-
-    margin-top:12px;
-
-}
-
-
-.noise span{
-
-    flex:1;
-
-    height:10px;
-
-    background:#292d34;
-
-}
-
-
-.noise span.active{
-
+.primary{
     background:var(--red);
-
-}
-
-
-/* =========================================================
-   TOAST
-========================================================= */
-
-.toast{
-
-    position:fixed;
-
-    right:22px;
-
-    bottom:22px;
-
-    background:#181b20;
-
-    border:1px solid #3b3f47;
-
-    padding:12px 16px;
-
+    color:white;
+    border:none;
+    padding:11px 16px;
     border-radius:7px;
-
-    opacity:0;
-
-    transform:
-        translateY(10px);
-
-    transition:.2s;
-
-    z-index:200;
-
+    cursor:pointer;
 }
 
-
-.toast.show{
-
-    opacity:1;
-
-    transform:
-        translateY(0);
-
+.primary:hover{
+    background:var(--red-light);
 }
 
-
-/* =========================================================
-   RESPONSIVO
-========================================================= */
-
-@media(max-width:1000px){
-
-    .layout{
-
-        grid-template-columns:1fr;
-
-    }
-
-    .sidebar{
-
-        display:none;
-
-    }
-
-    .stats,
-    .resources,
-    .three{
-
-        grid-template-columns:
-            repeat(2,1fr);
-
-    }
-
+.secondary{
+    background:#292929;
+    color:white;
+    border:1px solid var(--border);
+    padding:10px 14px;
+    border-radius:7px;
+    cursor:pointer;
 }
 
-
-@media(max-width:650px){
-
-    .main{
-
-        padding:15px;
-
-    }
-
-    .hero{
-
-        display:block;
-
-    }
-
-    .level-box{
-
-        margin-top:12px;
-
-    }
-
-    .stats,
-    .resources,
-    .two,
-    .three,
-    .form-grid{
-
-        grid-template-columns:1fr;
-
-    }
-
-    .topbar{
-
-        padding:
-            0 15px;
-
-    }
-
-    .top-actions .btn{
-
-        padding:7px;
-
-        font-size:11px;
-
-    }
-
+.danger{
+    background:#651010;
+    color:white;
+    border:none;
+    padding:8px 12px;
+    border-radius:6px;
+    cursor:pointer;
 }
 
+/* ROLAGEM */
 
-/* =========================================================
-   PRINT
-========================================================= */
+.roll-result{
+    text-align:center;
+    font-size:52px;
+    font-weight:bold;
+    color:var(--red-light);
+    padding:15px;
+}
 
-@media print{
+.roll-log{
+    margin-top:15px;
+    background:#090909;
+    border:1px solid var(--border);
+    border-radius:8px;
+    padding:12px;
+    height:180px;
+    overflow:auto;
+}
 
-    .topbar,
-    .sidebar{
+.roll-log p{
+    margin:7px 0;
+}
 
-        display:none;
+/* PERÍCIAS */
 
+.skill-row{
+    display:grid;
+    grid-template-columns:1fr 100px auto;
+    gap:10px;
+    margin-bottom:10px;
+}
+
+/* PODERES */
+
+.power-card{
+    background:#0d0d0d;
+    border:1px solid var(--border);
+    border-radius:8px;
+    padding:12px;
+    margin-bottom:10px;
+}
+
+/* INVENTÁRIO */
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th,
+td{
+    padding:10px;
+    border-bottom:1px solid var(--border);
+}
+
+th{
+    color:var(--red-light);
+    text-align:left;
+}
+
+.inventory-summary{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:#0d0d0d;
+    padding:15px;
+    border-radius:8px;
+    margin-bottom:15px;
+}
+
+.inventory-summary input{
+    width:80px;
+    display:inline-block;
+}
+
+/* RESPONSIVO */
+
+@media(max-width:600px){
+
+    .skill-row{
+        grid-template-columns:1fr 80px;
     }
 
-    .layout{
-
-        display:block;
-
+    .skill-row button{
+        grid-column:1/-1;
     }
 
-    body{
-
-        background:white;
-
-        color:black;
-
-    }
-
-    .main{
-
-        max-width:none;
-
-    }
-
-    .card{
-
-        color:black;
-
-        box-shadow:none;
-
-        border:1px solid #aaa;
-
-        background:white;
-
-    }
-
-    input,
-    textarea{
-
-        color:black !important;
-
+    table{
+        font-size:12px;
     }
 
 }
-
 </style>
 
 </head>
 
-
 <body>
 
-
-<!-- =====================================================
-     TOPBAR
-===================================================== -->
-
-<header class="topbar">
-
-
-    <div class="logo">
-
-        <div class="logo-icon">
-            ☠
-        </div>
-
-        HIDE
-
-        <span>
-            AND
-        </span>
-
-        KILL
-
-    </div>
-
-
-    <div class="top-actions">
-
-        <button
-        class="btn"
-        onclick="saveSheet()">
-
-            💾 Salvar
-
-        </button>
-
-
-        <button
-        class="btn"
-        onclick="window.print()">
-
-            🖨 Imprimir
-
-        </button>
-
-
-        <button
-        class="btn btn-danger"
-        onclick="clearSheet()">
-
-            ☠ Limpar
-
-        </button>
-
-    </div>
-
+<header>
+    <h1>HIDE AND KILL</h1>
+    <p>Ficha Automática de Personagem</p>
 </header>
 
+<div class="container">
 
+<!-- ABAS -->
 
-<div class="layout">
+<div class="tabs">
 
+<button class="tab-button active" data-tab="personagem">
+👤 Personagem
+</button>
 
-<!-- =====================================================
-     SIDEBAR
-===================================================== -->
+<button class="tab-button" data-tab="atributos">
+📊 Atributos
+</button>
 
-<aside class="sidebar">
+<button class="tab-button" data-tab="combate">
+⚔️ Combate
+</button>
 
+<button class="tab-button" data-tab="poderes">
+🔥 Poderes
+</button>
 
-    <div class="profile">
+<button class="tab-button" data-tab="inventario">
+🎒 Inventário
+</button>
 
-
-        <div class="avatar">
-
-            ☠
-
-        </div>
-
-
-        <div class="small">
-
-            SOBREVIVENTE
-
-        </div>
-
-
-        <h3 id="sideName">
-
-            Novo Sobrevivente
-
-        </h3>
-
-
-        <div class="small">
-
-            Nível
-
-            <span id="sideLevel">
-                1
-            </span>
-
-            •
-
-            <span id="sideOrigin">
-                —
-            </span>
-
-        </div>
-
-    </div>
-
-
-
-    <nav class="nav">
-
-
-        <button
-        class="active"
-        onclick="showPage('overview',this)">
-
-            ◈ Visão Geral
-
-        </button>
-
-
-        <button
-        onclick="showPage('character',this)">
-
-            ♙ Personagem
-
-        </button>
-
-
-        <button
-        onclick="showPage('combat',this)">
-
-            ⚔ Combate
-
-        </button>
-
-
-        <button
-        onclick="showPage('equipment',this)">
-
-            ▣ Equipamentos
-
-        </button>
-
-
-        <button
-        onclick="showPage('powers',this)">
-
-            ✦ Poderes & Perks
-
-        </button>
-
-
-        <button
-        onclick="showPage('investigation',this)">
-
-            ⌕ Investigação
-
-        </button>
-
-
-        <button
-        onclick="showPage('history',this)">
-
-            ▤ História
-
-        </button>
-
-
-    </nav>
-
-
-</aside>
-
-
-
-<!-- =====================================================
-     MAIN
-===================================================== -->
-
-<main class="main">
-
-
-
-<!-- =====================================================
-     VISÃO GERAL
-===================================================== -->
-
-<section id="overview">
-
-
-    <div class="hero">
-
-
-        <div>
-
-
-            <div class="eyebrow">
-
-                FICHA DE SOBREVIVÊNCIA
-
-            </div>
-
-
-            <h1 id="heroName">
-
-                Novo Sobrevivente
-
-            </h1>
-
-
-            <p id="heroConcept">
-
-                Você não precisa vencer.
-                Só precisa sobreviver.
-
-            </p>
-
-
-        </div>
-
-
-        <div class="level-box">
-
-
-            <div class="small">
-
-                NÍVEL
-
-            </div>
-
-
-            <strong id="heroLevel">
-
-                1
-
-            </strong>
-
-
-        </div>
-
-
-    </div>
-
-
-
-    <!-- =================================================
-         STATUS PRINCIPAIS
-    ================================================= -->
-
-
-    <div class="grid stats">
-
-
-        <!-- VIDA -->
-
-        <div class="card">
-
-
-            <div class="stat-icon">
-
-                ❤️
-
-            </div>
-
-
-            <div class="stat-label">
-
-                PONTOS DE VIDA
-
-            </div>
-
-
-            <div class="stat-value">
-
-
-                <span id="pvCurrent">
-
-                    10
-
-                </span>
-
-
-                /
-
-
-                <span id="pvMax">
-
-                    10
-
-                </span>
-
-
-            </div>
-
-
-            <div class="bar">
-
-
-                <div
-                class="bar-fill"
-                id="pvBar">
-
-                </div>
-
-
-            </div>
-
-
-        </div>
-
-
-
-        <!-- SANIDADE -->
-
-        <div class="card">
-
-
-            <div class="stat-icon">
-
-                🧠
-
-            </div>
-
-
-            <div class="stat-label">
-
-                SANIDADE
-
-            </div>
-
-
-            <div class="stat-value">
-
-
-                <span id="sanCurrent">
-
-                    10
-
-                </span>
-
-
-                /
-
-
-                <span id="sanMax">
-
-                    10
-
-                </span>
-
-
-            </div>
-
-
-            <div class="bar">
-
-
-                <div
-                class="bar-fill bar-blue"
-                id="sanBar">
-
-                </div>
-
-
-            </div>
-
-
-        </div>
-
-
-
-        <!-- MEDO -->
-
-        <div class="card">
-
-
-            <div class="stat-icon">
-
-                😨
-
-            </div>
-
-
-            <div class="stat-label">
-
-                MEDO
-
-            </div>
-
-
-            <div class="stat-value">
-
-
-                <span id="fearCurrent">
-
-                    0
-
-                </span>
-
-
-                / 10
-
-
-            </div>
-
-
-            <div class="bar">
-
-
-                <div
-                class="bar-fill bar-yellow"
-                id="fearBar">
-
-                </div>
-
-
-            </div>
-
-
-        </div>
-
-
-
-        <!-- PE -->
-
-        <div class="card">
-
-
-            <div class="stat-icon">
-
-                ⚡
-
-            </div>
-
-
-            <div class="stat-label">
-
-                PONTOS DE ESFORÇO
-
-            </div>
-
-
-            <div class="stat-value">
-
-
-                <span id="peCurrent">
-
-                    0
-
-                </span>
-
-
-                /
-
-
-                <span id="peMax">
-
-                    0
-
-                </span>
-
-
-            </div>
-
-
-            <div class="bar">
-
-
-                <div
-                class="bar-fill bar-green"
-                id="peBar">
-
-                </div>
-
-
-            </div>
-
-
-        </div>
-
-
-    </div>
-
-
-
-    <!-- =================================================
-         ESTADOS
-    ================================================= -->
-
-
-    <div class="grid resources">
-
-
-        <div class="card">
-
-
-            <h2>
-
-                Estado
-
-            </h2>
-
-
-            <span class="tag">
-
-                ☐ Saudável
-
-            </span>
-
-
-            <span class="tag">
-
-                ☐ Ferido
-
-            </span>
-
-
-            <span class="tag">
-
-                ☐ Cambaleando
-
-            </span>
-
-
-            <span class="tag">
-
-                ☐ Morrendo
-
-            </span>
-
-
-        </div>
-
-
-
-        <div class="card">
-
-
-            <h2>
-
-                Ruído
-
-            </h2>
-
-
-            <div
-            class="noise"
-            id="noise">
-
-
-                <span class="active"></span>
-
-                <span class="active"></span>
-
-                <span></span>
-
-                <span></span>
-
-                <span></span>
-
-
-            </div>
-
-
-            <div
-            class="small"
-            style="margin-top:8px">
-
-
-                Quanto mais barulho,
-                mais perto ele está.
-
-
-            </div>
-
-
-        </div>
-
-
-
-        <div class="card">
-
-
-            <h2>
-
-                Estado mental
-
-            </h2>
-
-
-            <strong
-            id="fearState"
-            style="color:var(--green)">
-
-                CALMO
-
-            </strong>
-
-
-            <div
-            class="small"
-            style="margin-top:7px">
-
-
-                Não deixe o medo dominar você.
-
-
-            </div>
-
-
-        </div>
-
-
-    </div>
-
-
-
-    <!-- =================================================
-         IDENTIDADE + ATRIBUTOS
-    ================================================= -->
-
-
-    <div class="grid two">
-
-
-        <!-- IDENTIDADE -->
-
-        <div class="card">
-
-
-            <h2>
-
-                Identidade
-
-            </h2>
-
-
-            <div class="form-grid">
-
-
-                <div class="field">
-
-
-                    <label>
-
-                        Nome
-
-                    </label>
-
-
-                    <input
-                    id="name"
-                    value="Novo Sobrevivente"
-                    oninput="sync()">
-
-
-                </div>
-
-
-
-                <div class="field">
-
-
-                    <label>
-
-                        Apelido
-
-                    </label>
-
-
-                    <input
-                    id="nickname">
-
-
-                </div>
-
-
-
-                <div class="field">
-
-
-                    <label>
-
-                        Idade
-
-                    </label>
-
-
-                    <input
-                    id="age"
-                    type="number">
-
-
-                </div>
-
-
-
-                <div class="field">
-
-
-                    <label>
-
-                        Nível
-
-                    </label>
-
-
-                    <input
-                    id="level"
-                    type="number"
-                    value="1"
-                    min="1"
-                    max="8"
-                    oninput="changeLevel()">
-
-
-                </div>
-
-
-
-                <div class="field">
-
-
-                    <label>
-
-                        Origem
-
-                    </label>
-
-
-                    <input
-                    id="origin"
-                    placeholder="Ex.: Skatista"
-                    oninput="sync()">
-
-
-                </div>
-
-
-
-                <div class="field wide">
-
-
-                    <label>
-
-                        Conceito
-
-                    </label>
-
-
-                    <input
-                    id="concept"
-                    placeholder="Quem é esse personagem?"
-                    oninput="sync()">
-
-
-                </div>
-
-
-            </div>
-
-
-        </div>
-
-
-
-        <!-- ATRIBUTOS -->
-
-        <div class="card">
-
-
-            <h2>
-
-                Atributos
-
-            </h2>
-
-
-            <div class="attribute">
-
-
-                <b>
-
-                    💪 Físico
-
-                </b>
-
-
-                <input
-                id="attrFisico"
-                type="number"
-                value="0">
-
-
-            </div>
-
-
-
-            <div class="attribute">
-
-
-                <b>
-
-                    🧠 Mental
-
-                </b>
-
-
-                <input
-                id="attrMental"
-                type="number"
-                value="0">
-
-
-            </div>
-
-
-
-            <div class="attribute">
-
-
-                <b>
-
-                    🗣 Social
-
-                </b>
-
-
-                <input
-                id="attrSocial"
-                type="number"
-                value="0">
-
-
-            </div>
-
-
-
-            <div class="attribute">
-
-
-                <b>
-
-                    🛠 Prático
-
-                </b>
-
-
-                <input
-                id="attrPratico"
-                type="number"
-                value="0">
-
-
-            </div>
-
-
-            <div
-            class="small"
-            style="margin-top:12px">
-
-
-                Bônus de atributos pelo nível:
-                
-                <strong
-                id="attributeBonus"
-                style="color:white">
-
-                    +0
-
-                </strong>
-
-
-            </div>
-
-
-        </div>
-
-
-    </div>
-
-
-</section>
-
-
-
-<!-- =====================================================
-     PERSONAGEM
-===================================================== -->
-
-<section
-id="character"
-style="display:none">
-
-
-    <div class="hero">
-
-
-        <div>
-
-
-            <div class="eyebrow">
-
-                PERSONAGEM
-
-            </div>
-
-
-            <h1>
-
-                Identidade & Perfil
-
-            </h1>
-
-
-            <p>
-
-                O rosto por trás da sobrevivência.
-
-            </p>
-
-
-        </div>
-
-
-    </div>
-
-
-
-    <div class="card">
-
-
-        <div class="form-grid">
-
-
-            <div class="field">
-
-
-                <label>
-
-                    Nome completo
-
-                </label>
-
-
-                <input>
-
-
-            </div>
-
-
-
-            <div class="field">
-
-
-                <label>
-
-                    Pronomes
-
-                </label>
-
-
-                <input>
-
-
-            </div>
-
-
-
-            <div class="field">
-
-
-                <label>
-
-                    Jogador
-
-                </label>
-
-
-                <input>
-
-
-            </div>
-
-
-
-            <div class="field">
-
-
-                <label>
-
-                    Data de nascimento
-
-                </label>
-
-
-                <input
-                type="date">
-
-
-            </div>
-
-
-
-            <div class="field wide">
-
-
-                <label>
-
-                    História resumida
-
-                </label>
-
-
-                <textarea></textarea>
-
-
-            </div>
-
-
-
-            <div class="field">
-
-
-                <label>
-
-                    Maior medo
-
-                </label>
-
-
-                <textarea></textarea>
-
-
-            </div>
-
-
-
-            <div class="field">
-
-
-                <label>
-
-                    Motivo para sobreviver
-
-                </label>
-
-
-                <textarea></textarea>
-
-
-            </div>
-
-
-        </div>
-
-
-    </div>
-
-
-</section>
-
-
-
-<!-- =====================================================
-     COMBATE
-===================================================== -->
-
-<section
-id="combat"
-style="display:none">
-
-
-    <div class="hero">
-
-
-        <div>
-
-
-            <div class="eyebrow">
-
-                COMBATE
-
-            </div>
-
-
-            <h1>
-
-                Quando correr não basta.
-
-            </h1>
-
-
-            <p>
-
-                Registre seus valores de combate.
-
-            </p>
-
-
-        </div>
-
-
-    </div>
-
-
-
-    <div class="grid three">
-
-
-        <div class="card">
-
-
-            <h2>
-
-                Defesa
-
-            </h2>
-
-
-            <input
-            type="number"
-            style="
-            width:100%;
-            padding:13px;
-            background:#0b0d10;
-            border:1px solid #292d34;
-            color:white;
-            ">
-
-
-        </div>
-
-
-
-        <div class="card">
-
-
-            <h2>
-
-                Iniciativa
-
-            </h2>
-
-
-            <input
-            type="number"
-            style="
-            width:100%;
-            padding:13px;
-            background:#0b0d10;
-            border:1px solid #292d34;
-            color:white;
-            ">
-
-
-        </div>
-
-
-
-        <div class="card">
-
-
-            <h2>
-
-                Resistência
-
-            </h2>
-
-
-            <input
-            type="number"
-            style="
-            width:100%;
-            padding:13px;
-            background:#0b0d10;
-            border:1px solid #292d34;
-            color:white;
-            ">
-
-
-        </div>
-
-
-    </div>
-
-
-
-    <div
-    class="card"
-    style="margin-top:14px">
-
-
-        <h2>
-
-            Ferimentos graves
-
-        </h2>
-
-
-        <textarea
-        style="
-        width:100%;
-        min-height:150px;
-        background:#0b0d10;
-        color:white;
-        border:1px solid #292d34;
-        padding:12px;
-        "></textarea>
-
-
-    </div>
-
-
-</section>
-
-
-
-<!-- =====================================================
-     EQUIPAMENTOS
-===================================================== -->
-
-<section
-id="equipment"
-style="display:none">
-
-
-    <div class="hero">
-
-
-        <div>
-
-
-            <div class="eyebrow">
-
-                EQUIPAMENTOS
-
-            </div>
-
-
-            <h1>
-
-                Armas & Inventário
-
-            </h1>
-
-
-            <p>
-
-                Cada item pode ser a diferença entre viver e morrer.
-
-            </p>
-
-
-        </div>
-
-
-    </div>
-
-
-
-    <div class="grid two">
-
-
-        <div class="card">
-
-
-            <h2>
-
-                Armas
-
-            </h2>
-
-
-
-            <div class="weapon">
-
-
-                <strong>
-
-                    Arma 1
-
-                </strong>
-
-
-                <span>
-
-                    Nome • Dano • Crítico • Alcance • Tipo
-
-                </span>
-
-
-                <input
-                placeholder="Ex.: Machado de Batalha"
-                style="
-                width:100%;
-                margin-top:8px;
-                padding:9px;
-                background:#101216;
-                color:white;
-                border:1px solid #292d34;
-                ">
-
-
-            </div>
-
-
-
-            <div class="weapon">
-
-
-                <strong>
-
-                    Arma 2
-
-                </strong>
-
-
-                <span>
-
-                    Nome • Dano • Crítico • Alcance • Tipo
-
-                </span>
-
-
-                <input
-                placeholder="Ex.: Bastão de Choque"
-                style="
-                width:100%;
-                margin-top:8px;
-                padding:9px;
-                background:#101216;
-                color:white;
-                border:1px solid #292d34;
-                ">
-
-
-            </div>
-
-
-
-            <div class="weapon">
-
-
-                <strong>
-
-                    Arma 3
-
-                </strong>
-
-
-                <span>
-
-                    Nome • Dano • Crítico • Alcance • Tipo
-
-                </span>
-
-
-                <input
-                placeholder="Arma reserva"
-                style="
-                width:100%;
-                margin-top:8px;
-                padding:9px;
-                background:#101216;
-                color:white;
-                border:1px solid #292d34;
-                ">
-
-
-            </div>
-
-
-        </div>
-
-
-
-        <div class="card">
-
-
-            <h2>
-
-                Inventário
-
-            </h2>
-
-
-            <div class="form-grid">
-
-
-                <div class="field">
-
-
-                    <label>
-
-                        Espaço máximo
-
-                    </label>
-
-
-                    <input
-                    type="number"
-                    value="10">
-
-
-                </div>
-
-
-
-                <div class="field">
-
-
-                    <label>
-
-                        Espaço utilizado
-
-                    </label>
-
-
-                    <input
-                    type="number"
-                    value="0">
-
-
-                </div>
-
-
-
-                <div class="field wide">
-
-
-                    <label>
-
-                        Itens
-
-                    </label>
-
-
-                    <textarea
-                    placeholder="
-Lanterna
-Celular
-Chaves
-Kit médico"></textarea>
-
-
-                </div>
-
-
-            </div>
-
-
-        </div>
-
-
-    </div>
-
-
-</section>
-
-
-
-<!-- =====================================================
-     PODERES
-===================================================== -->
-
-<section
-id="powers"
-style="display:none">
-
-
-    <div class="hero">
-
-
-        <div>
-
-
-            <div class="eyebrow">
-
-                SOBREVIVÊNCIA
-
-            </div>
-
-
-            <h1>
-
-                Poderes & Perks
-
-            </h1>
-
-
-            <p>
-
-                Habilidades que surgiram porque você ainda está vivo.
-
-            </p>
-
-
-        </div>
-
-
-    </div>
-
-
-
-    <div class="grid three">
-
-
-        <div class="card">
-
-
-            <h2>
-
-                Poder 1
-
-            </h2>
-
-
-            <div class="field">
-
-
-                <input
-                placeholder="Nome">
-
-
-            </div>
-
-
-            <textarea
-            placeholder="Efeito..."
-            style="
-            width:100%;
-            margin-top:8px;
-            background:#0b0d10;
-            color:white;
-            border:1px solid #292d34;
-            padding:9px;
-            "></textarea>
-
-
-        </div>
-
-
-
-        <div class="card">
-
-
-            <h2>
-
-                Poder 2
-
-            </h2>
-
-
-            <div class="field">
-
-
-                <input
-                placeholder="Nome">
-
-
-            </div>
-
-
-            <textarea
-            placeholder="Efeito..."
-            style="
-            width:100%;
-            margin-top:8px;
-            background:#0b0d10;
-            color:white;
-            border:1px solid #292d34;
-            padding:9px;
-            "></textarea>
-
-
-        </div>
-
-
-
-        <div class="card">
-
-
-            <h2>
-
-                Poder 3
-
-            </h2>
-
-
-            <div class="field">
-
-
-                <input
-                placeholder="Nome">
-
-
-            </div>
-
-
-            <textarea
-            placeholder="Efeito..."
-            style="
-            width:100%;
-            margin-top:8px;
-            background:#0b0d10;
-            color:white;
-            border:1px solid #292d34;
-            padding:9px;
-            "></textarea>
-
-
-        </div>
-
-
-    </div>
-
-
-
-    <div
-    class="card"
-    style="margin-top:14px">
-
-
-        <h2>
-
-            Perks
-
-        </h2>
-
-
-        <div class="form-grid">
-
-
-            <div class="field">
-
-                <label>
-                    Perk 1
-                </label>
-
-                <input>
-
-            </div>
-
-
-            <div class="field">
-
-                <label>
-                    Perk 2
-                </label>
-
-                <input>
-
-            </div>
-
-
-            <div class="field">
-
-                <label>
-                    Perk 3
-                </label>
-
-                <input>
-
-            </div>
-
-
-            <div class="field">
-
-                <label>
-                    Perk 4
-                </label>
-
-                <input>
-
-            </div>
-
-
-        </div>
-
-
-    </div>
-
-
-</section>
-
-
-
-<!-- =====================================================
-     INVESTIGAÇÃO
-===================================================== -->
-
-<section
-id="investigation"
-style="display:none">
-
-
-    <div class="hero">
-
-
-        <div>
-
-
-            <div class="eyebrow">
-
-                FOUND FOOTAGE
-
-            </div>
-
-
-            <h1>
-
-                Investigação
-
-            </h1>
-
-
-            <p>
-
-                O assassino sempre deixa alguma coisa para trás.
-
-            </p>
-
-
-        </div>
-
-
-    </div>
-
-
-
-    <div class="grid two">
-
-
-        <div class="card">
-
-
-            <h2>
-
-                🔎 Pistas encontradas
-
-            </h2>
-
-
-
-            <div class="clue">
-
-                <input
-                placeholder="Pista 01">
-
-            </div>
-
-
-            <div class="clue">
-
-                <input
-                placeholder="Pista 02">
-
-            </div>
-
-
-            <div class="clue">
-
-                <input
-                placeholder="Pista 03">
-
-            </div>
-
-
-            <div class="clue">
-
-                <input
-                placeholder="Pista 04">
-
-            </div>
-
-
-            <div class="clue">
-
-                <input
-                placeholder="Pista 05">
-
-            </div>
-
-
-        </div>
-
-
-
-        <div class="card">
-
-
-            <h2>
-
-                ☠ Perfil do assassino
-
-            </h2>
-
-
-            <div class="form-grid">
-
-
-                <div class="field">
-
-
-                    <label>
-
-                        Nome / apelido
-
-                    </label>
-
-
-                    <input>
-
-
-                </div>
-
-
-
-                <div class="field">
-
-
-                    <label>
-
-                        Fraqueza descoberta
-
-                    </label>
-
-
-                    <input>
-
-
-                </div>
-
-
-
-                <div class="field wide">
-
-
-                    <label>
-
-                        Padrão de comportamento
-
-                    </label>
-
-
-                    <textarea></textarea>
-
-
-                </div>
-
-
-
-                <div class="field wide">
-
-
-                    <label>
-
-                        Teoria
-
-                    </label>
-
-
-                    <textarea></textarea>
-
-
-                </div>
-
-
-            </div>
-
-
-        </div>
-
-
-    </div>
-
-
-</section>
-
-
-
-<!-- =====================================================
-     HISTÓRIA
-===================================================== -->
-
-<section
-id="history"
-style="display:none">
-
-
-    <div class="hero">
-
-
-        <div>
-
-
-            <div class="eyebrow">
-
-                ARQUIVO DO SOBREVIVENTE
-
-            </div>
-
-
-            <h1>
-
-                História & Vínculos
-
-            </h1>
-
-
-            <p>
-
-                O que aconteceu antes do sangue?
-
-            </p>
-
-
-        </div>
-
-
-    </div>
-
-
-
-    <div class="grid two">
-
-
-        <div class="card">
-
-
-            <h2>
-
-                Antes do massacre
-
-            </h2>
-
-
-            <textarea
-            style="
-            width:100%;
-            min-height:160px;
-            background:#0b0d10;
-            color:white;
-            border:1px solid #292d34;
-            padding:12px;
-            "></textarea>
-
-
-        </div>
-
-
-
-        <div class="card">
-
-
-            <h2>
-
-                Primeiro contato com o assassino
-
-            </h2>
-
-
-            <textarea
-            style="
-            width:100%;
-            min-height:160px;
-            background:#0b0d10;
-            color:white;
-            border:1px solid #292d34;
-            padding:12px;
-            "></textarea>
-
-
-        </div>
-
-
-
-        <div class="card">
-
-
-            <h2>
-
-                O que você esconde
-
-            </h2>
-
-
-            <textarea
-            style="
-            width:100%;
-            min-height:160px;
-            background:#0b0d10;
-            color:white;
-            border:1px solid #292d34;
-            padding:12px;
-            "></textarea>
-
-
-        </div>
-
-
-
-        <div class="card">
-
-
-            <h2>
-
-                Se eu morrer...
-
-            </h2>
-
-
-            <textarea
-            style="
-            width:100%;
-            min-height:160px;
-            background:#0b0d10;
-            color:white;
-            border:1px solid #292d34;
-            padding:12px;
-            "></textarea>
-
-
-        </div>
-
-
-    </div>
-
-
-</section>
-
-
-
-<footer
-style="
-text-align:center;
-color:#555;
-font-size:11px;
-padding:35px;
-">
-
-
-    HIDE AND KILL
-    •
-    Ficha digital
-    •
-    Sistema de terror slasher
-
-
-</footer>
-
-
-</main>
+<button class="tab-button" data-tab="historia">
+📖 História
+</button>
 
 </div>
 
+<!-- PERSONAGEM -->
 
+<section class="tab-content active" id="personagem">
 
-<div
-class="toast"
-id="toast">
+<div class="status-grid">
 
-    Ficha salva.
+<div class="status-card">
+
+<div class="status-title">
+<b>❤️ VIDA</b>
+<b id="hpText">10 / 10</b>
+</div>
+
+<div class="bar">
+<div class="fill hp-fill" id="hpBar"></div>
+</div>
+
+<div class="status-inputs">
+<input type="number" id="hpCurrent" value="10" min="0">
+<input type="number" id="hpMax" value="10" min="1">
+</div>
 
 </div>
 
+<div class="status-card">
 
+<div class="status-title">
+<b>🧠 SANIDADE</b>
+<b id="sanityText">10 / 10</b>
+</div>
+
+<div class="bar">
+<div class="fill sanity-fill" id="sanityBar"></div>
+</div>
+
+<div class="status-inputs">
+<input type="number" id="sanityCurrent" value="10" min="0">
+<input type="number" id="sanityMax" value="10" min="1">
+</div>
+
+</div>
+
+<div class="status-card">
+
+<div class="status-title">
+<b>😨 MEDO</b>
+<b id="fearText">0 / 10</b>
+</div>
+
+<div class="bar">
+<div class="fill fear-fill" id="fearBar"></div>
+</div>
+
+<div class="status-inputs">
+<input type="number" id="fearCurrent" value="0" min="0">
+<input type="number" id="fearMax" value="10" min="1">
+</div>
+
+</div>
+
+<div class="status-card">
+
+<div class="status-title">
+<b>⚡ PE</b>
+<b id="peText">5 / 5</b>
+</div>
+
+<div class="bar">
+<div class="fill pe-fill" id="peBar"></div>
+</div>
+
+<div class="status-inputs">
+<input type="number" id="peCurrent" value="5" min="0">
+<input type="number" id="peMax" value="5" min="1">
+</div>
+
+</div>
+
+</div>
+
+<div class="grid2">
+
+<div class="panel">
+
+<h2>👤 Informações</h2>
+
+<div class="field">
+<label>Nome</label>
+<input id="characterName">
+</div>
+
+<div class="field">
+<label>Jogador</label>
+<input id="playerName">
+</div>
+
+<div class="field">
+<label>Idade</label>
+<input id="age" type="number">
+</div>
+
+<div class="field">
+<label>Origem</label>
+
+<select id="origin">
+<option value="">Selecione</option>
+<option>Skatista</option>
+<option>Nerd</option>
+<option>Popular</option>
+<option>Ignorada</option>
+<option>Trabalhador</option>
+<option>Coral</option>
+<option>Bagunceiro Atento</option>
+<option>Babá</option>
+<option>Motoboy</option>
+<option>Crente</option>
+</select>
+
+</div>
+
+<div class="field">
+<label>Perk</label>
+<input id="perk">
+</div>
+
+</div>
+
+<div class="panel">
+
+<h2>📈 Progressão</h2>
+
+<div class="field">
+
+<label>Nível</label>
+
+<select id="level">
+
+<option value="1">Nível 1</option>
+<option value="2">Nível 2</option>
+<option value="3">Nível 3</option>
+<option value="4">Nível 4</option>
+<option value="5">Nível 5</option>
+<option value="6">Nível 6</option>
+<option value="7">Nível 7</option>
+<option value="8">Nível 8</option>
+
+</select>
+
+</div>
+
+<p>❤️ Vida Máxima Base: <b id="levelHp">10</b></p>
+<br>
+<p>🧠 Sanidade Máxima Base: <b id="levelSanity">10</b></p>
+<br>
+<p>📊 Benefício de Atributo: <b id="levelAttribute">+0</b></p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ATRIBUTOS -->
+
+<section class="tab-content" id="atributos">
+
+<div class="grid2">
+
+<div class="panel">
+
+<h2>📊 Atributos</h2>
+
+<div class="grid">
+
+<div class="attribute-card">
+<label>💪 Físico</label>
+<input type="number" id="fisico" value="0">
+</div>
+
+<div class="attribute-card">
+<label>🧠 Mental</label>
+<input type="number" id="mental" value="0">
+</div>
+
+<div class="attribute-card">
+<label>🗣️ Social</label>
+<input type="number" id="social" value="0">
+</div>
+
+<div class="attribute-card">
+<label>🔧 Prático</label>
+<input type="number" id="pratico" value="0">
+</div>
+
+</div>
+
+</div>
+
+<div class="panel">
+
+<h2>🎲 Rolagem</h2>
+
+<div class="field">
+
+<label>Atributo</label>
+
+<select id="rollAttribute">
+<option value="fisico">Físico</option>
+<option value="mental">Mental</option>
+<option value="social">Social</option>
+<option value="pratico">Prático</option>
+</select>
+
+</div>
+
+<div class="field">
+<label>Bônus de Perícia</label>
+<input type="number" id="rollSkill" value="0">
+</div>
+
+<div class="roll-result" id="rollResult">?</div>
+
+<button class="primary" id="rollButton">
+🎲 Rolar 1d20
+</button>
+
+<div class="roll-log" id="rollLog">
+<p>Nenhuma rolagem ainda.</p>
+</div>
+
+</div>
+
+</div>
+
+<div class="panel">
+
+<h2>📚 Perícias</h2>
+
+<div id="skillsContainer"></div>
+
+<button class="secondary" id="addSkillButton">
++ Adicionar Perícia
+</button>
+
+</div>
+
+</section>
+
+<!-- COMBATE -->
+
+<section class="tab-content" id="combate">
+
+<div class="grid2">
+
+<div class="panel">
+
+<h2>⚔️ Arma Principal</h2>
+
+<div class="field">
+<label>Nome</label>
+<input id="weaponName">
+</div>
+
+<div class="field">
+<label>Dano</label>
+<input id="weaponDamage" placeholder="Ex: 2d6">
+</div>
+
+<div class="field">
+<label>Crítico</label>
+<input id="weaponCritical" placeholder="Ex: 20/x3">
+</div>
+
+<div class="field">
+<label>Tipo</label>
+<input id="weaponType">
+</div>
+
+<div class="field">
+<label>Bônus de Ataque</label>
+<input type="number" id="attackBonus" value="0">
+</div>
+
+<button class="primary" id="attackButton">
+🎲 Rolar Ataque
+</button>
+
+<div class="roll-result" id="attackResult">?</div>
+
+</div>
+
+<div class="panel">
+
+<h2>💀 Condições</h2>
+
+<div class="field">
+<label>Condições Atuais</label>
+<textarea id="conditions"></textarea>
+</div>
+
+<div class="field">
+<label>Anotações de Combate</label>
+<textarea id="combatNotes"></textarea>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- PODERES -->
+
+<section class="tab-content" id="poderes">
+
+<div class="grid2">
+
+<div class="panel">
+
+<h2>🩸 Poderes de Sobrevivente</h2>
+
+<div id="survivorPowers"></div>
+
+<button class="secondary" id="addSurvivorPower">
++ Adicionar Poder
+</button>
+
+</div>
+
+<div class="panel">
+
+<h2>🔥 Manifestações</h2>
+
+<div id="manifestations"></div>
+
+<button class="secondary" id="addManifestation">
++ Adicionar Manifestação
+</button>
+
+</div>
+
+</div>
+
+<div class="grid2">
+
+<div class="panel">
+
+<h2>🧩 Quebra-Alma</h2>
+
+<div class="field">
+<label>Pânico</label>
+<textarea id="panic"></textarea>
+</div>
+
+<div class="field">
+<label>Fissura</label>
+<textarea id="fissure"></textarea>
+</div>
+
+<div class="field">
+<label>Cerne</label>
+<textarea id="core"></textarea>
+</div>
+
+</div>
+
+<div class="panel">
+
+<h2>⚓ Outros Elementos</h2>
+
+<div class="field">
+<label>Âncora</label>
+<textarea id="anchor"></textarea>
+</div>
+
+<div class="field">
+<label>Lacuna</label>
+<textarea id="gap"></textarea>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- INVENTÁRIO -->
+
+<section class="tab-content" id="inventario">
+
+<div class="panel">
+
+<h2>🎒 Inventário</h2>
+
+<div class="inventory-summary">
+
+<div>
+Espaço Usado: <b id="usedSpace">0</b>
+</div>
+
+<div>
+Espaço Máximo:
+<input type="number" id="maxSpace" value="10">
+</div>
+
+</div>
+
+<table>
+
+<thead>
+<tr>
+<th>Item</th>
+<th>Categoria</th>
+<th>Espaço</th>
+<th>Ação</th>
+</tr>
+</thead>
+
+<tbody id="inventoryBody"></tbody>
+
+</table>
+
+<br>
+
+<button class="secondary" id="addItemButton">
++ Adicionar Item
+</button>
+
+</div>
+
+</section>
+
+<!-- HISTÓRIA -->
+
+<section class="tab-content" id="historia">
+
+<div class="grid2">
+
+<div class="panel">
+
+<h2>📖 História</h2>
+
+<textarea id="history" style="min-height:350px"></textarea>
+
+</div>
+
+<div class="panel">
+
+<h2>📝 Anotações</h2>
+
+<div class="field">
+<label>Pistas</label>
+<textarea id="clues"></textarea>
+</div>
+
+<div class="field">
+<label>NPCs</label>
+<textarea id="npcs"></textarea>
+</div>
+
+<div class="field">
+<label>Anotações Gerais</label>
+<textarea id="notes"></textarea>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<div class="panel">
+
+<button class="primary" id="saveButton">
+💾 Salvar Ficha
+</button>
+
+<button class="secondary" id="resetButton">
+🗑️ Limpar Ficha
+</button>
+
+</div>
+
+</div>
 
 <script>
 
+/* =====================================
+   ABAS
+===================================== */
 
-/* =========================================================
-   PROGRESSÃO OFICIAL DO SOBREVIVENTE
-========================================================= */
+const tabButtons =
+document.querySelectorAll(".tab-button");
 
-const progression = {
+const tabContents =
+document.querySelectorAll(".tab-content");
+
+
+tabButtons.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        const tabId =
+        button.dataset.tab;
+
+
+        tabButtons.forEach(btn => {
+
+            btn.classList.remove("active");
+
+        });
+
+
+        tabContents.forEach(content => {
+
+            content.classList.remove("active");
+
+        });
+
+
+        button.classList.add("active");
+
+
+        document
+        .getElementById(tabId)
+        .classList.add("active");
+
+
+        saveSheet();
+
+    });
+
+});
+
+
+/* =====================================
+   STATUS
+===================================== */
+
+function updateStatus(type){
+
+    const currentInput =
+    document.getElementById(type + "Current");
+
+    const maxInput =
+    document.getElementById(type + "Max");
+
+    const text =
+    document.getElementById(type + "Text");
+
+    const bar =
+    document.getElementById(type + "Bar");
+
+
+    let current =
+    Number(currentInput.value) || 0;
+
+    let max =
+    Number(maxInput.value) || 1;
+
+
+    if(current < 0){
+
+        current = 0;
+        currentInput.value = 0;
+
+    }
+
+
+    if(current > max){
+
+        current = max;
+        currentInput.value = max;
+
+    }
+
+
+    const percentage =
+    (current / max) * 100;
+
+
+    text.textContent =
+    current + " / " + max;
+
+
+    bar.style.width =
+    percentage + "%";
+
+
+    saveSheet();
+
+}
+
+
+/* EVENTOS STATUS */
+
+["hp","sanity","fear","pe"]
+.forEach(type => {
+
+    document
+    .getElementById(type + "Current")
+    .addEventListener(
+        "input",
+        () => updateStatus(type)
+    );
+
+
+    document
+    .getElementById(type + "Max")
+    .addEventListener(
+        "input",
+        () => updateStatus(type)
+    );
+
+});
+
+
+/* =====================================
+   NÍVEIS
+===================================== */
+
+const levels = {
 
     1:{
-        vida:10,
-        sanidade:10,
-        atributos:0
+        hp:10,
+        sanity:10,
+        attribute:"+0"
     },
 
     2:{
-        vida:14,
-        sanidade:12,
-        atributos:1
+        hp:14,
+        sanity:12,
+        attribute:"+1"
     },
 
     3:{
-        vida:18,
-        sanidade:14,
-        atributos:1
+        hp:18,
+        sanity:14,
+        attribute:"+0"
     },
 
     4:{
-        vida:23,
-        sanidade:17,
-        atributos:2
+        hp:23,
+        sanity:17,
+        attribute:"+1"
     },
 
     5:{
-        vida:28,
-        sanidade:20,
-        atributos:2
+        hp:28,
+        sanity:20,
+        attribute:"+0"
     },
 
     6:{
-        vida:34,
-        sanidade:24,
-        atributos:3
+        hp:34,
+        sanity:24,
+        attribute:"+1"
     },
 
     7:{
-        vida:40,
-        sanidade:28,
-        atributos:3
+        hp:40,
+        sanity:28,
+        attribute:"+0"
     },
 
     8:{
-        vida:47,
-        sanidade:33,
-        atributos:3
+        hp:47,
+        sanity:32,
+        attribute:"+1"
     }
 
 };
 
 
+function updateLevel(){
 
-/* =========================================================
-   NAVEGAÇÃO
-========================================================= */
+    const level =
+    document.getElementById("level").value;
 
-function showPage(page,button){
 
-    document
-    .querySelectorAll("main section")
-    .forEach(section=>{
-
-        section.style.display="none";
-
-    });
+    const data =
+    levels[level];
 
 
     document
-    .getElementById(page)
-    .style.display="block";
+    .getElementById("levelHp")
+    .textContent =
+    data.hp;
 
 
     document
-    .querySelectorAll(".nav button")
-    .forEach(btn=>{
-
-        btn.classList.remove("active");
-
-    });
+    .getElementById("levelSanity")
+    .textContent =
+    data.sanity;
 
 
-    button.classList.add("active");
+    document
+    .getElementById("levelAttribute")
+    .textContent =
+    data.attribute;
 
 
-    window.scrollTo({
+    document
+    .getElementById("hpMax")
+    .value =
+    data.hp;
 
-        top:0,
 
-        behavior:"smooth"
+    document
+    .getElementById("sanityMax")
+    .value =
+    data.sanity;
 
-    });
+
+    document
+    .getElementById("hpCurrent")
+    .value =
+    data.hp;
+
+
+    document
+    .getElementById("sanityCurrent")
+    .value =
+    data.sanity;
+
+
+    updateStatus("hp");
+    updateStatus("sanity");
+
 
 }
 
 
-
-/* =========================================================
-   OBTER NÍVEL
-========================================================= */
-
-function getLevel(){
-
-    let level =
-        Number(
-            document
-            .getElementById("level")
-            .value
-        );
+document
+.getElementById("level")
+.addEventListener(
+    "change",
+    updateLevel
+);
 
 
-    if(!level || level < 1){
+/* =====================================
+   ROLAR DADOS
+===================================== */
 
-        level=1;
+document
+.getElementById("rollButton")
+.addEventListener("click", () => {
 
-    }
-
-
-    if(level > 8){
-
-        level=8;
-
-    }
-
-
+    const attributeName =
     document
-    .getElementById("level")
-    .value=level;
+    .getElementById("rollAttribute")
+    .value;
 
 
-    return level;
-
-}
-
-
-
-/* =========================================================
-   ALTERAÇÃO DE NÍVEL
-========================================================= */
-
-function changeLevel(){
-
-    const level=getLevel();
-
-    const stats=progression[level];
-
-
-    /*
-    ---------------------------------------------------------
-    Vida máxima
-    ---------------------------------------------------------
-    */
-
-    const oldMax=
-        Number(
-            document
-            .getElementById("pvMax")
-            .textContent
-        );
-
-
-    const oldCurrent=
-        Number(
-            document
-            .getElementById("pvCurrent")
-            .textContent
-        );
-
-
-    /*
-    Se o personagem estava cheio,
-    continua cheio ao subir de nível.
-    */
-
-    if(oldCurrent >= oldMax){
-
+    const attribute =
+    Number(
         document
-        .getElementById("pvCurrent")
-        .textContent=stats.vida;
-
-    }
-
-
-    /*
-    Se for uma ficha nova,
-    garante que começa com a vida cheia.
-    */
-
-    if(oldMax === 10 && oldCurrent === 10){
-
-        document
-        .getElementById("pvCurrent")
-        .textContent=stats.vida;
-
-    }
-
-
-    /*
-    ---------------------------------------------------------
-    Sanidade máxima
-    ---------------------------------------------------------
-    */
-
-    const oldSanMax=
-        Number(
-            document
-            .getElementById("sanMax")
-            .textContent
-        );
-
-
-    const oldSanCurrent=
-        Number(
-            document
-            .getElementById("sanCurrent")
-            .textContent
-        );
-
-
-    if(oldSanCurrent >= oldSanMax){
-
-        document
-        .getElementById("sanCurrent")
-        .textContent=stats.sanidade;
-
-    }
-
-
-    /*
-    ---------------------------------------------------------
-    Atualiza máximos
-    ---------------------------------------------------------
-    */
-
-    document
-    .getElementById("pvMax")
-    .textContent=stats.vida;
-
-
-    document
-    .getElementById("sanMax")
-    .textContent=stats.sanidade;
-
-
-    /*
-    ---------------------------------------------------------
-    Bônus de atributos
-    ---------------------------------------------------------
-    */
-
-    document
-    .getElementById("attributeBonus")
-    .textContent=
-        "+" + stats.atributos;
-
-
-    /*
-    ---------------------------------------------------------
-    Sincroniza HUD
-    ---------------------------------------------------------
-    */
-
-    sync();
-
-}
-
-
-
-/* =========================================================
-   SINCRONIZAR PERSONAGEM
-========================================================= */
-
-function sync(){
-
-    const name=
-        document
-        .getElementById("name")
+        .getElementById(attributeName)
         .value
-        || "Novo Sobrevivente";
+    ) || 0;
 
 
-    const level=getLevel();
-
-
-    const origin=
+    const skill =
+    Number(
         document
-        .getElementById("origin")
+        .getElementById("rollSkill")
         .value
-        || "—";
+    ) || 0;
 
 
-    const concept=
+    const dice =
+    Math.floor(
+        Math.random() * 20
+    ) + 1;
+
+
+    const total =
+    dice + attribute + skill;
+
+
+    document
+    .getElementById("rollResult")
+    .textContent =
+    total;
+
+
+    const log =
+    document
+    .getElementById("rollLog");
+
+
+    if(
+        log.textContent
+        .includes("Nenhuma rolagem")
+    ){
+
+        log.innerHTML = "";
+
+    }
+
+
+    const result =
+    document.createElement("p");
+
+
+    result.innerHTML =
+    "🎲 <b>" +
+    dice +
+    "</b> + Atributo " +
+    attribute +
+    " + Perícia " +
+    skill +
+    " = <b>" +
+    total +
+    "</b>";
+
+
+    log.prepend(result);
+
+});
+
+
+/* =====================================
+   ATAQUE
+===================================== */
+
+document
+.getElementById("attackButton")
+.addEventListener("click", () => {
+
+    const dice =
+    Math.floor(
+        Math.random() * 20
+    ) + 1;
+
+
+    const bonus =
+    Number(
         document
-        .getElementById("concept")
+        .getElementById("attackBonus")
         .value
-        || "Você não precisa vencer. Só precisa sobreviver.";
+    ) || 0;
 
 
-    const stats=
-        progression[level];
-
-
-    /*
-    ---------------------------------------------------------
-    Identidade
-    ---------------------------------------------------------
-    */
-
-    document
-    .getElementById("sideName")
-    .textContent=name;
+    const total =
+    dice + bonus;
 
 
     document
-    .getElementById("heroName")
-    .textContent=name;
+    .getElementById("attackResult")
+    .textContent =
+    total;
+
+});
 
 
+/* =====================================
+   PERÍCIAS
+===================================== */
+
+function addSkill(name = "", value = 0){
+
+    const container =
     document
-    .getElementById("sideLevel")
-    .textContent=level;
+    .getElementById("skillsContainer");
 
 
-    document
-    .getElementById("heroLevel")
-    .textContent=level;
+    const row =
+    document.createElement("div");
 
 
-    document
-    .getElementById("sideOrigin")
-    .textContent=origin;
+    row.className =
+    "skill-row";
 
 
-    document
-    .getElementById("heroConcept")
-    .textContent=concept;
+    const nameInput =
+    document.createElement("input");
+
+    nameInput.placeholder =
+    "Nome da perícia";
+
+    nameInput.value =
+    name;
 
 
-    /*
-    ---------------------------------------------------------
-    Vida Máxima
-    ---------------------------------------------------------
-    */
+    const valueInput =
+    document.createElement("input");
 
-    document
-    .getElementById("pvMax")
-    .textContent=stats.vida;
+    valueInput.type =
+    "number";
 
-
-    /*
-    ---------------------------------------------------------
-    Sanidade Máxima
-    ---------------------------------------------------------
-    */
-
-    document
-    .getElementById("sanMax")
-    .textContent=stats.sanidade;
+    valueInput.value =
+    value;
 
 
-    /*
-    ---------------------------------------------------------
-    Bônus de atributos
-    ---------------------------------------------------------
-    */
+    const removeButton =
+    document.createElement("button");
 
-    document
-    .getElementById("attributeBonus")
-    .textContent=
-        "+" + stats.atributos;
+    removeButton.textContent =
+    "Remover";
+
+    removeButton.className =
+    "danger";
 
 
-    /*
-    ---------------------------------------------------------
-    Barras
-    ---------------------------------------------------------
-    */
+    removeButton.addEventListener(
+        "click",
+        () => {
 
-    updateBars();
+            row.remove();
+            saveSheet();
+
+        }
+    );
+
+
+    row.appendChild(nameInput);
+    row.appendChild(valueInput);
+    row.appendChild(removeButton);
+
+
+    container.appendChild(row);
 
 }
 
 
-
-/* =========================================================
-   ATUALIZAÇÃO DAS BARRAS
-========================================================= */
-
-function updateBars(){
-
-
-    const pv=
-        Number(
-            document
-            .getElementById("pvCurrent")
-            .textContent
-        );
+document
+.getElementById("addSkillButton")
+.addEventListener(
+    "click",
+    () => addSkill()
+);
 
 
-    const pvMax=
-        Number(
-            document
-            .getElementById("pvMax")
-            .textContent
-        );
+/* =====================================
+   PODERES
+===================================== */
 
+function addPower(
+    containerId,
+    title,
+    name = "",
+    description = ""
+){
 
-    const san=
-        Number(
-            document
-            .getElementById("sanCurrent")
-            .textContent
-        );
-
-
-    const sanMax=
-        Number(
-            document
-            .getElementById("sanMax")
-            .textContent
-        );
-
-
-    const fear=
-        Number(
-            document
-            .getElementById("fearCurrent")
-            .textContent
-        );
-
-
-    const pe=
-        Number(
-            document
-            .getElementById("peCurrent")
-            .textContent
-        );
-
-
-    const peMax=
-        Number(
-            document
-            .getElementById("peMax")
-            .textContent
-        );
-
-
-
-    /*
-    ---------------------------------------------------------
-    VIDA
-    ---------------------------------------------------------
-    */
-
+    const container =
     document
-    .getElementById("pvBar")
-    .style.width=
-        Math.max(
-            0,
-            Math.min(
-                100,
-                (pv / pvMax) * 100
-            )
-        ) + "%";
+    .getElementById(containerId);
 
 
-
-    /*
-    ---------------------------------------------------------
-    SANIDADE
-    ---------------------------------------------------------
-    */
-
-    document
-    .getElementById("sanBar")
-    .style.width=
-        Math.max(
-            0,
-            Math.min(
-                100,
-                (san / sanMax) * 100
-            )
-        ) + "%";
+    const card =
+    document.createElement("div");
 
 
-
-    /*
-    ---------------------------------------------------------
-    MEDO
-    ---------------------------------------------------------
-    */
-
-    document
-    .getElementById("fearBar")
-    .style.width=
-        Math.max(
-            0,
-            Math.min(
-                100,
-                (fear / 10) * 100
-            )
-        ) + "%";
+    card.className =
+    "power-card";
 
 
+    const titleElement =
+    document.createElement("label");
 
-    /*
-    ---------------------------------------------------------
-    PONTOS DE ESFORÇO
-    ---------------------------------------------------------
-    */
-
-    if(peMax > 0){
-
-        document
-        .getElementById("peBar")
-        .style.width=
-            Math.max(
-                0,
-                Math.min(
-                    100,
-                    (pe / peMax) * 100
-                )
-            ) + "%";
-
-    }
-
-    else{
-
-        document
-        .getElementById("peBar")
-        .style.width="0%";
-
-    }
+    titleElement.textContent =
+    title;
 
 
+    const nameInput =
+    document.createElement("input");
 
-    /*
-    ---------------------------------------------------------
-    ESTADO DO MEDO
-    ---------------------------------------------------------
-    */
+    nameInput.placeholder =
+    "Nome";
 
-    const state=
-        document
-        .getElementById("fearState");
+    nameInput.value =
+    name;
 
 
-    if(fear >= 8){
+    const descriptionInput =
+    document.createElement("textarea");
 
-        state.textContent="PÂNICO";
+    descriptionInput.placeholder =
+    "Descrição";
 
-        state.style.color=
-            "var(--red-light)";
+    descriptionInput.value =
+    description;
 
-    }
 
-    else if(fear >= 5){
+    const removeButton =
+    document.createElement("button");
 
-        state.textContent=
-            "ATERRORIZADO";
+    removeButton.textContent =
+    "Remover";
 
-        state.style.color=
-            "var(--yellow)";
+    removeButton.className =
+    "danger";
 
-    }
 
-    else if(fear >= 3){
+    removeButton.addEventListener(
+        "click",
+        () => {
 
-        state.textContent=
-            "TENSO";
+            card.remove();
+            saveSheet();
 
-        state.style.color=
-            "var(--yellow)";
+        }
+    );
 
-    }
 
-    else{
+    card.appendChild(titleElement);
+    card.appendChild(nameInput);
+    card.appendChild(descriptionInput);
+    card.appendChild(removeButton);
 
-        state.textContent=
-            "CALMO";
 
-        state.style.color=
-            "var(--green)";
-
-    }
+    container.appendChild(card);
 
 }
 
 
+document
+.getElementById("addSurvivorPower")
+.addEventListener(
+    "click",
+    () => {
 
-/* =========================================================
-   TOAST
-========================================================= */
+        addPower(
+            "survivorPowers",
+            "Poder"
+        );
 
-function toast(message){
-
-    const element=
-        document
-        .getElementById("toast");
-
-
-    element.textContent=message;
-
-
-    element.classList.add("show");
+    }
+);
 
 
-    setTimeout(()=>{
+document
+.getElementById("addManifestation")
+.addEventListener(
+    "click",
+    () => {
 
-        element.classList.remove("show");
+        addPower(
+            "manifestations",
+            "Manifestação"
+        );
 
-    },1800);
+    }
+);
+
+
+/* =====================================
+   INVENTÁRIO
+===================================== */
+
+function addInventoryItem(
+    name = "",
+    category = "",
+    space = 1
+){
+
+    const body =
+    document
+    .getElementById("inventoryBody");
+
+
+    const row =
+    document.createElement("tr");
+
+
+    const nameCell =
+    document.createElement("td");
+
+    const categoryCell =
+    document.createElement("td");
+
+    const spaceCell =
+    document.createElement("td");
+
+    const actionCell =
+    document.createElement("td");
+
+
+    const nameInput =
+    document.createElement("input");
+
+    nameInput.value =
+    name;
+
+
+    const categoryInput =
+    document.createElement("input");
+
+    categoryInput.value =
+    category;
+
+
+    const spaceInput =
+    document.createElement("input");
+
+    spaceInput.type =
+    "number";
+
+    spaceInput.value =
+    space;
+
+    spaceInput.min =
+    0;
+
+
+    spaceInput.addEventListener(
+        "input",
+        updateInventory
+    );
+
+
+    const removeButton =
+    document.createElement("button");
+
+    removeButton.textContent =
+    "X";
+
+    removeButton.className =
+    "danger";
+
+
+    removeButton.addEventListener(
+        "click",
+        () => {
+
+            row.remove();
+            updateInventory();
+
+        }
+    );
+
+
+    nameCell.appendChild(nameInput);
+    categoryCell.appendChild(categoryInput);
+    spaceCell.appendChild(spaceInput);
+    actionCell.appendChild(removeButton);
+
+
+    row.appendChild(nameCell);
+    row.appendChild(categoryCell);
+    row.appendChild(spaceCell);
+    row.appendChild(actionCell);
+
+
+    body.appendChild(row);
+
+
+    updateInventory();
 
 }
 
 
+function updateInventory(){
 
-/* =========================================================
-   SALVAR FICHA
-========================================================= */
-
-function saveSheet(){
-
-    const data={};
+    let used = 0;
 
 
     document
     .querySelectorAll(
-        "input,textarea,select"
+        "#inventoryBody tr"
     )
-    .forEach((element,index)=>{
+    .forEach(row => {
+
+        const inputs =
+        row.querySelectorAll("input");
 
 
-        const key=
-            element.id
-            ||
-            "field_"+index;
+        if(inputs[2]){
 
+            used +=
+            Number(inputs[2].value) || 0;
 
-        data[key]=element.value;
+        }
 
     });
 
 
-    /*
-    Salva também os valores atuais
-    */
-
-    data.pvCurrent=
-        document
-        .getElementById("pvCurrent")
-        .textContent;
+    document
+    .getElementById("usedSpace")
+    .textContent =
+    used;
 
 
-    data.sanCurrent=
-        document
-        .getElementById("sanCurrent")
-        .textContent;
+    saveSheet();
+
+}
 
 
-    data.pvMax=
-        document
-        .getElementById("pvMax")
-        .textContent;
+document
+.getElementById("addItemButton")
+.addEventListener(
+    "click",
+    () => addInventoryItem()
+);
 
 
-    data.sanMax=
-        document
-        .getElementById("sanMax")
-        .textContent;
+/* =====================================
+   SALVAMENTO
+===================================== */
+
+function saveSheet(){
+
+    const data = {};
+
+
+    document
+    .querySelectorAll("input, textarea, select")
+    .forEach(element => {
+
+        if(element.id){
+
+            data[element.id] =
+            element.value;
+
+        }
+
+    });
+
+
+    data.skills = [];
+
+
+    document
+    .querySelectorAll("#skillsContainer .skill-row")
+    .forEach(row => {
+
+        const inputs =
+        row.querySelectorAll("input");
+
+
+        data.skills.push({
+            name:inputs[0].value,
+            value:inputs[1].value
+        });
+
+    });
+
+
+    data.inventory = [];
+
+
+    document
+    .querySelectorAll("#inventoryBody tr")
+    .forEach(row => {
+
+        const inputs =
+        row.querySelectorAll("input");
+
+
+        data.inventory.push({
+            name:inputs[0].value,
+            category:inputs[1].value,
+            space:inputs[2].value
+        });
+
+    });
+
+
+    data.survivorPowers = [];
+
+
+    document
+    .querySelectorAll(
+        "#survivorPowers .power-card"
+    )
+    .forEach(card => {
+
+        const input =
+        card.querySelector("input");
+
+        const textarea =
+        card.querySelector("textarea");
+
+
+        data.survivorPowers.push({
+            name:input.value,
+            description:textarea.value
+        });
+
+    });
+
+
+    data.manifestations = [];
+
+
+    document
+    .querySelectorAll(
+        "#manifestations .power-card"
+    )
+    .forEach(card => {
+
+        const input =
+        card.querySelector("input");
+
+        const textarea =
+        card.querySelector("textarea");
+
+
+        data.manifestations.push({
+            name:input.value,
+            description:textarea.value
+        });
+
+    });
 
 
     localStorage.setItem(
-        "hideAndKillSheet",
+        "hideAndKillFicha",
         JSON.stringify(data)
     );
 
-
-    toast(
-        "Ficha salva no navegador."
-    );
-
 }
 
 
-
-/* =========================================================
-   CARREGAR FICHA
-========================================================= */
+/* =====================================
+   CARREGAR
+===================================== */
 
 function loadSheet(){
 
-    const raw=
-        localStorage
-        .getItem(
-            "hideAndKillSheet"
-        );
+    const saved =
+    localStorage.getItem(
+        "hideAndKillFicha"
+    );
 
 
-    if(!raw){
-
-        return;
-
-    }
+    if(!saved) return;
 
 
-    try{
-
-        const data=
-            JSON.parse(raw);
+    const data =
+    JSON.parse(saved);
 
 
-        document
-        .querySelectorAll(
-            "input,textarea,select"
-        )
-        .forEach((element,index)=>{
+    Object.keys(data)
+    .forEach(key => {
+
+        const element =
+        document.getElementById(key);
 
 
-            const key=
-                element.id
-                ||
-                "field_"+index;
+        if(
+            element &&
+            typeof data[key] !== "object"
+        ){
+
+            element.value =
+            data[key];
+
+        }
+
+    });
 
 
-            if(
-                data[key] !== undefined
-            ){
+    if(data.skills){
 
-                element.value=
-                    data[key];
+        data.skills.forEach(skill => {
 
-            }
+            addSkill(
+                skill.name,
+                skill.value
+            );
 
         });
 
-
-        /*
-        Recupera Vida e Sanidade atuais
-        */
-
-        if(data.pvCurrent !== undefined){
-
-            document
-            .getElementById("pvCurrent")
-            .textContent=
-                data.pvCurrent;
-
-        }
+    }
 
 
-        if(data.sanCurrent !== undefined){
+    if(data.inventory){
 
-            document
-            .getElementById("sanCurrent")
-            .textContent=
-                data.sanCurrent;
+        data.inventory.forEach(item => {
 
-        }
+            addInventoryItem(
+                item.name,
+                item.category,
+                item.space
+            );
 
+        });
 
     }
 
-    catch(error){
 
-        console.log(
-            "Erro ao carregar ficha:",
-            error
-        );
+    if(data.survivorPowers){
+
+        data.survivorPowers
+        .forEach(power => {
+
+            addPower(
+                "survivorPowers",
+                "Poder",
+                power.name,
+                power.description
+            );
+
+        });
 
     }
 
-}
 
+    if(data.manifestations){
 
+        data.manifestations
+        .forEach(power => {
 
-/* =========================================================
-   LIMPAR FICHA
-========================================================= */
+            addPower(
+                "manifestations",
+                "Manifestação",
+                power.name,
+                power.description
+            );
 
-function clearSheet(){
-
-    if(
-        confirm(
-            "Tem certeza que deseja apagar esta ficha?"
-        )
-    ){
-
-        localStorage
-        .removeItem(
-            "hideAndKillSheet"
-        );
-
-
-        location.reload();
+        });
 
     }
 
 }
 
 
+/* =====================================
+   LIMPAR
+===================================== */
 
-/* =========================================================
+document
+.getElementById("resetButton")
+.addEventListener(
+    "click",
+    () => {
+
+        if(
+            confirm(
+                "Deseja apagar toda a ficha?"
+            )
+        ){
+
+            localStorage.removeItem(
+                "hideAndKillFicha"
+            );
+
+            location.reload();
+
+        }
+
+    }
+);
+
+
+/* =====================================
+   SALVAMENTO AUTOMÁTICO
+===================================== */
+
+document.addEventListener(
+    "input",
+    () => {
+
+        saveSheet();
+
+    }
+);
+
+
+document
+.getElementById("saveButton")
+.addEventListener(
+    "click",
+    () => {
+
+        saveSheet();
+
+        alert(
+            "Ficha salva com sucesso!"
+        );
+
+    }
+);
+
+
+/* =====================================
    INICIALIZAÇÃO
-========================================================= */
+===================================== */
 
 loadSheet();
 
 
-/*
-Garante que o nível,
-Vida Máxima,
-Sanidade Máxima
-e bônus estejam corretos.
-*/
+["hp","sanity","fear","pe"]
+.forEach(type => {
 
-const initialLevel=
-    getLevel();
+    updateStatus(type);
+
+});
 
 
-const initialStats=
-    progression[initialLevel];
+const currentLevel =
+document.getElementById("level").value;
 
 
-document
-.getElementById("pvMax")
-.textContent=
-    initialStats.vida;
-
-
-document
-.getElementById("sanMax")
-.textContent=
-    initialStats.sanidade;
-
-
-document
-.getElementById("attributeBonus")
-.textContent=
-    "+" + initialStats.atributos;
-
-
-/*
-Se não houver ficha salva,
-começa com Vida e Sanidade cheias.
-*/
-
-if(
-    !localStorage.getItem(
-        "hideAndKillSheet"
-    )
-){
+if(levels[currentLevel]){
 
     document
-    .getElementById("pvCurrent")
-    .textContent=
-        initialStats.vida;
+    .getElementById("levelHp")
+    .textContent =
+    levels[currentLevel].hp;
 
 
     document
-    .getElementById("sanCurrent")
-    .textContent=
-        initialStats.sanidade;
+    .getElementById("levelSanity")
+    .textContent =
+    levels[currentLevel].sanity;
+
+
+    document
+    .getElementById("levelAttribute")
+    .textContent =
+    levels[currentLevel].attribute;
 
 }
 
 
-sync();
-
-
-updateBars();
+updateInventory();
 
 </script>
 
-
 </body>
-
 </html>
